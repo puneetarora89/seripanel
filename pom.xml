@@ -30,6 +30,7 @@
 		<jstl.version>1.2</jstl.version>
 		<junit-version>4.11</junit-version>
 		<mokito-version>1.9.5</mokito-version>
+		<jackson.version>1.9.13</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -40,6 +41,12 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.7</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<!--Mokito + Spring Test -->

@@ -2,7 +2,7 @@ package com.seri.web.dto;
 
 public class RatingTask {
 	
-	private long studenID;
+	private int studenID;
 	private String studentName;
 	private long rateId;
 	private int rate;
@@ -12,7 +12,7 @@ public class RatingTask {
 	public RatingTask(){};
 	
 	
-	public RatingTask(long studenID, String studentName, long rateId, int rate, int outOf, String content) {
+	public RatingTask(int studenID, String studentName, long rateId, int rate, int outOf, String content) {
 		super();
 		this.studenID = studenID;
 		this.studentName = studentName;
@@ -23,7 +23,7 @@ public class RatingTask {
 	}
 
 
-	public long getStudenID() {
+	public int getStudenID() {
 		return studenID;
 	}
 	public String getStudentName() {
@@ -41,7 +41,7 @@ public class RatingTask {
 	public String getContent() {
 		return content;
 	}
-	public void setStudenID(long studenID) {
+	public void setStudenID(int studenID) {
 		this.studenID = studenID;
 	}
 	public void setStudentName(String studentName) {

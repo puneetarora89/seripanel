@@ -1,5 +1,6 @@
 package com.seri.web.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -303,9 +304,8 @@ public class SyllabusController {
         return obj.toJSONString();
     }
     @RequestMapping(value="/getStudentWork", method=RequestMethod.GET)
-    public @ResponseBody String getStudentWork(long standardId, long subjectId){
+    public @ResponseBody List<RatingTask> getStudentWork(long standardId, long subjectId){
     	List<RatingTask> ratingTaskList = syllabusDao.getWorkFromSyllabus(standardId, subjectId);
-    	String result = new Gson().toJson(ratingTaskList);
-    	return result;
+    	return ratingTaskList;
     }
 }

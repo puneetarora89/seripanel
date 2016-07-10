@@ -1,8 +1,10 @@
 package com.seri.web.dao.daoImpl;
 
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +17,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.seri.web.dao.SyllabusDao;
 import com.seri.web.dto.RatingTask;
@@ -312,18 +316,24 @@ public class SyllabusDaoImpl implements SyllabusDao {
     
     public List<RatingTask> getWorkFromSyllabus(long standardId, long subjectId){
     	EntityManager em = DbCon.getEntityManager();
-//    	String query = "select new com.seri.web.dto.RatingTask(s.studentId,s.fName,r.id, r.rate, r.outof, sy.content)  "+
-//    	"from Student s LEFT JOIN Syllabus sy ON s.studentId=sy.studentId LEFT JOIN Rating r ON r.entityId=sy.taskId where s.stuStandardId=:standardId and sy.subjectId=:subjectId";
-    	String query = "select s.student_id as studentID,s.f_name as studentName, r.id as rateId, r.rate as rate, r.outof as outof, sy.content as content   from student s left join syllabus sy on s.student_id=sy.student_id left join rating r on r.entity=sy.task_id"+
+    	String query = "select s.student_id, s.f_name,s.m_name,s.l_name, r.id, r.rate, r.outof, sy.content from student s left join syllabus sy on s.student_id=sy.student_id left join rating r on r.entity=sy.task_id"+
     	" where s.standard_id=:standardId and sy.subject_Id=:subjectId";
     	Query q= em.createNativeQuery(query);
-    	/*TypedQuery<RatingTask> typedQuery = em.createQuery(query, RatingTask.class);
-    	typedQuery.setParameter("standardId", standardId);
-    	typedQuery.setParameter("subjectId", subjectId);*/
     	q.setParameter("standardId", standardId);
     	q.setParameter("subjectId", subjectId);
-    	List<RatingTask> results = q.getResultList();
-    	return results;
+    	List<Object[]> results = q.getResultList();
+    	List<RatingTask> ratingTask = new ArrayList<RatingTask>();
+    	for(Object[] oj : results){
+    		RatingTask rt = new RatingTask();
+    		rt.setStudenID((Integer)oj[0]);
+    		rt.setStudentName((String)oj[1]+" "+(StringUtils.isEmpty((String)oj[2]) ? "" :" ")+(String)oj[3]);
+    		rt.setRateId(((BigInteger)oj[4]).longValue());
+    		rt.setRate((Integer)oj[5]);
+    		rt.setOutOf((Integer)oj[6]);
+    		rt.setContent((String)oj[7]);
+    		ratingTask.add(rt);
+    	}
+    	return ratingTask;
     }
 }
 
