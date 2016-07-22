@@ -26,7 +26,7 @@ public class UserController {
         try {
             if(userDao.getUserUsingEmail(user.getEmail()) == null) {
                 String passwordToken = GlobalFunUtils.getMd5Hex(user.getEmail() + user.getDefaultRole() + CalendarUtil.getDate().toString());
-                //System.out.println(user.getLogin() +" :: "+ user.getRole() +" :: "+ dateTime +" :: "+passwordToken);
+                System.out.println(user.getEmail() +" :: "+ user.getfName()+" :: "+passwordToken);
                 user.setCreatedDate(CalendarUtil.getDate());
                 user.setCreatedBy(LoggedUserUtil.getUserId());
                 user.setLastUpdatedDate(CalendarUtil.getDate());

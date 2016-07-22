@@ -49,7 +49,7 @@ public class Student {
     @Column(name = "BLOOD_GROUP")
     private String bloodGroup;
     @Column(name = "ADDMISSION_DATE")
-    private String admissionDate;
+    private Date admissionDate;
 
     @Column(name = "APPLICATION_NO")
     private String applicationNo;
@@ -193,11 +193,11 @@ public class Student {
         this.bloodGroup = bloodGroup;
     }
 
-    public String getAdmissionDate() {
+    public Date getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(String admissionDate) {
+    public void setAdmissionDate(Date admissionDate) {
         this.admissionDate = admissionDate;
     }
 

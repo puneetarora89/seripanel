@@ -86,6 +86,17 @@ public class UserDaoImpl implements UserDao {
         userDetails1.setPhoto(userDetails.getPhoto());
         userDetails1.setGender(userDetails.getGender());
         userDetails1.setPasswordToken(userDetails.getPasswordToken());
+        userDetails1.setSchool(userDetails.getSchool());
+        userDetails1.setStandard(userDetails.getStandard());
         em.getTransaction().commit();
+    }
+    
+    public User getUserById(long id){
+    	EntityManager em = DbCon.getEntityManager();
+        globalFunUtils.inActiveAllTransaction(em);
+        em.getTransaction().begin();
+        User user = em.find(User.class, id);
+        em.getTransaction().commit();
+        return user;
     }
 }

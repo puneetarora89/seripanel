@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,9 @@ import com.seri.web.utils.LoggedUserUtil;
 @Controller
 @RequestMapping(value = "/email**")
 public class EmailController {
-    private GlobalFunUtils globalFunUtils = new GlobalFunUtils();
+	
+	@Autowired
+    private GlobalFunUtils globalFunUtils;
     EmailDaoImpl emailDao = new EmailDaoImpl();
 
     @RequestMapping(value = "/compose**", method = RequestMethod.GET)

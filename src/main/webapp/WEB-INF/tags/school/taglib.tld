@@ -17,6 +17,24 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    
+    <tag>
+        <name>schoolById</name>
+        <tag-class>com.seri.web.utils.tags.SchoolById</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>schoolId</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>disabled</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>ctrlName</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 
     <tag>
         <name>activeSchoolList</name>

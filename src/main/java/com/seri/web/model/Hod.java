@@ -35,7 +35,7 @@ public class Hod implements Serializable {
     @Column(name = "L_NAME")
     private String lName;
     @Column(name = "DOB")
-    private String dob;
+    private Date dob;
     @Column(name = "PHOTO")
     private String photo;
     @Column(name = "GENDER")
@@ -115,11 +115,11 @@ public class Hod implements Serializable {
         this.lName = lName;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

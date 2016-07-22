@@ -60,12 +60,12 @@
                 <span class="formwrapper">
                     <c:choose>
                         <c:when test="${userForm.gender.equals('male')}">
-                            <input type="radio" name="gender" value="male" checked disabled="disabled" /> Male &nbsp; &nbsp;
-                            <input type="radio" name="gender" value="female" disabled /> Female
+                            <input type="radio" name="gender" value="MALE" checked disabled="disabled" /> Male &nbsp; &nbsp;
+                            <input type="radio" name="gender" value="FEMALE" disabled /> Female
                         </c:when>
                         <c:otherwise>
-                            <input type="radio" name="gender" value="male" disabled /> Male &nbsp; &nbsp;
-                            <input type="radio" name="gender" value="female" checked disabled="disabled" /> Female
+                            <input type="radio" name="gender" value="MALE" disabled /> Male &nbsp; &nbsp;
+                            <input type="radio" name="gender" value="FEMALE" checked disabled="disabled" /> Female
                         </c:otherwise>
                     </c:choose>
 
@@ -99,7 +99,7 @@
             <div class="par control-group">
                 <label for="admissionDate" class="control-label">Addmission Date</label>
                 <div class="controls">
-                    <input type="text" class="span4" id="admissionDate" name="admissionDate" value="${studentForm.admissionDate}" placeholder="Enter Addmission Date">
+                    <input type="text" class="span4 date-field" id="admissionDate" name="admissionDate" value="${studentForm.admissionDate}" placeholder="Enter Addmission Date">
                     <span class="help-inline"></span>
                 </div>
             </div><!--par-->
@@ -216,7 +216,7 @@
             <div class="par control-group">
                 <label for="stuSchoolId" class="control-label">School</label>
                 <div class="controls">
-                    <schoolLibs:activeSchoolList ctrlName="stuSchoolId" selectedSchool="${studentForm.stuSchoolId}" />
+                    <schoolLibs:schoolById ctrlName="stuSchoolId" schoolId="${studentForm.stuSchoolId}" disabled="disabled"/>
                     <span class="help-inline"></span>
                 </div>
             </div><!--par-->

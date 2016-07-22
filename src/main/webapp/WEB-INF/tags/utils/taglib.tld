@@ -7,6 +7,16 @@
     <tlib-version>1.0</tlib-version>
     <short-name>utilLibs</short-name>
     <uri>/WEB-INF/tags/utils/</uri>
+    
+    <tag>
+        <name>systemDateFormatter</name>
+        <tag-class>com.seri.web.utils.tags.SystemDateFormatter</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>var</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 
     <tag>
         <name>nameUsingEmail</name>

@@ -6,7 +6,7 @@
 var $ = jQuery.noConflict();
 
 $(function(){
-	$(".date-field").datepicker({dateFormat:"yy-mm-dd"});
+	$(".date-field").attr("autocomplete","off").datepicker({dateFormat:"yy-mm-dd"});
 });
 
 var email = {

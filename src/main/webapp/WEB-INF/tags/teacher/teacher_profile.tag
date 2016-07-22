@@ -47,7 +47,7 @@
                 <label for="dob" class="control-label">Date of Birth</label>
                 <div class="controls">
                     <input type="text" class="span4" id="dob" name="dob" value="<fmt:formatDate pattern="yyyy-MM-dd" 
-            value="${userForm.dob}" />" readonly="readonly" readonly="readonly" placeholder="Enter Date of Birth">
+            value="${userForm.dob}" />" readonly="readonly" placeholder="Enter Date of Birth">
                     <span class="help-inline"></span>
                 </div>
             </div><!--par-->
@@ -55,8 +55,16 @@
             <p>
                 <label>Gender</label>
                 <span class="formwrapper">
-                    <input type="radio" name="gender" value="male" checked /> Male &nbsp; &nbsp;
-                    <input type="radio" name="gender" value="female" /> Female
+                <c:choose>
+                	<c:when test="${userForm.gender == 'MALE'}">
+                    	<input type="radio" name="gender" value="MALE" checked="checked" disabled="disabled"/> Male &nbsp; &nbsp;
+                    	<input type="radio" name="gender" value="FEMALE" disabled="disabled"/> Female
+                	</c:when>
+                	<c:otherwise>
+                    	<input type="radio" name="gender" value="MALE" disabled="disabled"/> Male &nbsp; &nbsp;
+                    	<input type="radio" name="gender" value="FEMALE" checked="checked" disabled="disabled"/> Female
+                	</c:otherwise>
+                </c:choose>
                 </span>
             </p>
 
@@ -205,7 +213,7 @@
             <div class="par control-group">
                 <label for="tJoiningDate" class="control-label">Joining Date (DD/MM/YYYY)</label>
                 <div class="controls">
-                    <input type="text" class="span4" id="tJoiningDate" name="tJoiningDate" value="${teacher.tJoiningDate}" placeholder="Enter Joining Date">
+                    <input type="text" class="span4 date-field" id="tJoiningDate" name="tJoiningDate" value="<utilLibs:dateFormatter dateVar='${teacher.tJoiningDate}'/>" placeholder="Enter Joining Date">
                     <span class="help-inline"></span>
                 </div>
             </div><!--par-->

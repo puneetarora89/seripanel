@@ -229,6 +229,7 @@ public class TeacherController {
             //teacher.setTeacherStandardId(tempDetails.getTeacherStandardId());
             teacher.setTeacherSchoolId(tempDetails.getTeacherSchoolId());
             teacher.setTeacherId(tempDetails.getTeacherId());
+            teacher.setGender(tempDetails.getGender());
             teacherDao.update(teacher);
         } else {
             teacher.settCreatedDate(CalendarUtil.getDate());

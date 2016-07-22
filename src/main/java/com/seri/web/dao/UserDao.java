@@ -21,4 +21,6 @@ public interface UserDao {
 
     public void update(User userDetails);
     public Role getRoleByRoleName(RoleType role);
+    
+    public User getUserById(long id);
 }

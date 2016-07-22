@@ -33,8 +33,8 @@ public class CalendarUtil {
         return dateFormat != null ? dateFormat.format(getDate()) : "";
     }
 	
-	public static DateFormat getSystemDateFormat(){
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	public static SimpleDateFormat getSystemDateFormat(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		return dateFormat;
 	}

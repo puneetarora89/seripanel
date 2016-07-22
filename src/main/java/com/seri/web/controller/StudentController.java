@@ -58,7 +58,7 @@ public class StudentController {
         ModelAndView model = new ModelAndView();
         globalFunUtils.getNotification(model);
 
-        Student student = studentDao.getStudentUsingStudentId(LoggedUserUtil.getUserId());
+        Student student = studentDao.getStudentUsingStudentLogin(LoggedUserUtil.getUserId());
         List<Subject> subjectList = subjectDao.getSubjectByStandardId(student.getStuStandardId());
         model.addObject("subjectList", subjectList);
         model.setViewName("student/dashboard");

@@ -118,6 +118,9 @@ public class UriController {
                 studentForm.setLastUpdatedDate(CalendarUtil.getDate());
                 studentForm.setCreatedDate(CalendarUtil.getDate());
                 studentDao.create(studentForm);
+                userForm.setStandard(String.valueOf(studentForm.getStuStandardId()));
+            	userForm.setSchool(studentForm.getStuSchoolId());
+            	userDao.update(userForm);
 
             } else if(RoleType.ROLE_TEACHER.equals(roleType)) {
 
@@ -129,16 +132,25 @@ public class UriController {
                 teacherForm.settLastUpdateDate(CalendarUtil.getDate());
                 teacherForm.settCreatedDate(CalendarUtil.getDate());
                 teacherDao.create(teacherForm);
+                userForm.setStandard(teacherForm.getTeacherStandardId());
+            	userForm.setSchool(teacherForm.getTeacherSchoolId());
+            	userDao.update(userForm);
 
             }  else if(RoleType.ROLE_PARENT.equals(roleType)) {
+            	
             	parentsForm.setUserId(userForm.getId());
                 parentsForm.setEmail(userForm.getEmail());
                 parentsForm.setCreatedBy(LoggedUserUtil.getUserId());
                 parentsForm.setLastUpdatedBy(LoggedUserUtil.getUserId());
                 parentsForm.setLastUpdatedDate(CalendarUtil.getDate());
                 parentsForm.setCreatedDate(CalendarUtil.getDate());
+                if(parentsForm.getStudentId() !=0 ){
+                	User user = userDao.getUserById(parentsForm.getStudentId());
+                	userForm.setStandard(user.getStandard());
+                	userForm.setSchool(user.getSchool());
+                	userDao.update(userForm);
+            	}
                 parentsDao.create(parentsForm);
-
                 Student student = studentDao.getStudentUsingStudentId(parentsForm.getStudentId());
                 student.setParentId(userForm.getId());
                 studentDao.update(student);
@@ -223,7 +235,7 @@ public class UriController {
         }
         else if(LoggedUserUtil.hasRole(RoleType.ROLE_STUDENT))
         {
-            Student studentProfile = studentDao.getStudentUsingStudentId(LoggedUserUtil.getUserId());
+            Student studentProfile = studentDao.getStudentUsingStudentLogin(LoggedUserUtil.getUserId());
             model.addObject("studentForm", studentProfile);
             model.addObject("formAction", "studentUpdate");
         }
