@@ -59,13 +59,13 @@ public class StandardListTag extends SimpleTagSupport {
             selectedStandard="0";
         }
         List<Standard> standardList = standardDao.getPrimaryStandard();
-        String selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlName+"'><option value='0'>-SELECT STANDARD-</option>";
+        String selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlName+"'><option value='0'>Make a selection</option>";
         if(multi!=null && multi.equals("true"))
             selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlName+"' multiple='multiple'>";
         if(standardList !=null  && standardList.size()>0) {
             for (Standard standard:standardList) {
             	if(standardIds != null){
-            		if(standardIds.contains(standard.getStandardId()))
+            		if(standardIds.contains(String.valueOf(standard.getStandardId())))
             				selectCtrl += "<option value='"+standard.getStandardId()+"' "+((Integer.parseInt(selectedStandard)==standard.getStandardId())?"selected='selected'":"")+">"+standard.getStandardName()+"</option>";
             	}else{
             		selectCtrl += "<option value='"+standard.getStandardId()+"' "+((Integer.parseInt(selectedStandard)==standard.getStandardId())?"selected='selected'":"")+">"+standard.getStandardName()+"</option>";

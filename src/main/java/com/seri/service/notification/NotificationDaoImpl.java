@@ -18,7 +18,7 @@ import com.seri.web.utils.GlobalFunUtils;
 @Repository("notificationDao")
 public class NotificationDaoImpl extends AbstractDao<Notification> implements NotificationDao{
 	
-	private Logger logger = LoggerFactory.getLogger(NotificationServiceImpl.class.getName());
+	private static Logger logger = LoggerFactory.getLogger(NotificationServiceImpl.class.getName());
 	
 	public NotificationDaoImpl() {
 		this.entityManager=DbCon.getEntityManager();
@@ -34,6 +34,7 @@ public class NotificationDaoImpl extends AbstractDao<Notification> implements No
 		query.setParameter("schoolId", (long)user.getSchool());
 		query.setParameter("standardId", GlobalFunUtils.convertInLongList(StringUtils.split(user.getStandard(),",")));
 		List<Notification> notificationList = query.getResultList();
+		logger.info("Notification count is {} for user {}", notificationList != null ? notificationList.size() : 0,user.getUsername());
 		return notificationList;
 	}
 

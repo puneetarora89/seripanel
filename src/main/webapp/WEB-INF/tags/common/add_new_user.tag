@@ -63,7 +63,7 @@
                 <label class="control-label">Select Role</label>
                 <div class="controls">
                     <select name="role" id="roleSelect" class="uniformselect">
-                        <option value="">--SELECT USER ROLE--</option>
+                        <option value="">Make a selection</option>
                         <commonLib:roleOptionDecider />
                     </select>
                     <span class="help-inline"></span>

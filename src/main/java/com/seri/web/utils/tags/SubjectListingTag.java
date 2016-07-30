@@ -33,7 +33,7 @@ public class SubjectListingTag extends SimpleTagSupport {
     public void doTag() throws IOException {
 //selectedStandard="1";
         //List<Subject> standardList = subjectDao.getSubjectByStandardId()
-        String selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlName+"'><option value='0'>-SELECT STANDARD-</option>";
+        String selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlName+"'><option value='0'>Make a selection</option>";
         /*if(standardList.size()>0) {
             for (Standard standard:standardList) {
                 selectCtrl += "<option value='"+standard.getStandardId()+"' "+((Integer.parseInt(selectedSubject)==standard.getStandardId())?"selected='selected'":"")+">"+standard.getStandardName()+"</option>";

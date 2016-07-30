@@ -62,10 +62,10 @@ public class SubjectSelectCustomIdCtrlTag extends SimpleTagSupport {
             ctrlId=ctrlName;
         if(multi==null)
             multi="false";
-        String selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlId+"' class='"+ctrlClass+"'><option value='0'>-SELECT STANDARD-</option>";
+        String selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlId+"' class='"+ctrlClass+"'><option value='0'>Make a selection</option>";
         try {
             if(multi=="true")
-                selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlId+"' class='"+ctrlClass+"' multiple='multiple'><option value='0'>-SELECT STANDARD-</option>";
+                selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlId+"' class='"+ctrlClass+"' multiple='multiple'><option value='0'>Make a selection</option>";
             List<Subject> subjectList = subjectDao.getSubjectListUsingInId(ids);
             List<Integer> tempList = new ArrayList<Integer>();
             if(subjectList.size()>0){

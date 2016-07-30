@@ -35,12 +35,19 @@
                         <li>
                             <a href="">
                                 <%--<img src="${pageContext.request.contextPath}/resources/pages/images/photos/thumb1.png" alt="" class="userthumb" />--%>
-                                <strong><utilLibs:propertyFetcher key="${notification.notificationType}" /> </strong>
-                                <small>Due Date:
-                                    <fmt:parseDate value="${notification.dueDate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
-                                    <fmt:formatDate value="${myDate}" var="startFormat" pattern="yyyy-MM-dd"/>
+                                <strong>
+                                	<utilLibs:propertyFetcher key="${notification.notificationType}" />  
+                                	<small>Due Date:
+                                    	<fmt:formatDate value="${notification.dueDate}" var="startFormat" pattern="yyyy-MM-dd"/>
                                     ${startFormat}
-                                </small>
+                               		 </small>
+                                </strong>
+                                <%-- <small>Due Date:
+                                    <fmt:parseDate value="${notification.dueDate}" pattern="yyyy-MM-dd HH:mm:ss" var="myDate"/>
+                                    <fmt:formatDate value="${notification.dueDate}" var="startFormat" pattern="yyyy-MM-dd"/>
+                                    ${startFormat}
+                                </small> --%>
+                                <span class="notiDesc">${notification.description}</span>
                             </a>
                         </li>
                     </c:forEach>

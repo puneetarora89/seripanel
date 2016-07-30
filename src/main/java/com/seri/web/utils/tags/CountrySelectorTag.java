@@ -57,7 +57,7 @@ public class CountrySelectorTag extends SimpleTagSupport {
         List<Country> countriesList = countryDao.getAllCountries();
         String selectCountriesListCtrl = "<select name='"+ctrlName+"' id='"+ctrlId+"' class='"+ctrlClass+"'>";
         if(countriesList != null) {
-            selectCountriesListCtrl+= "<option value='0'>-SELECT Country-</option>";
+            selectCountriesListCtrl+= "<option value='0'>Make a selection</option>";
             for (Country country : countriesList) {
                 selectCountriesListCtrl += "<option value='" + country.getCountryId() + "' "+((String.valueOf(country.getCountryId()).equals(selectedCountry))?"selected='selected'":"")+" data-id='"+country.getCountryCode()+"'>" + country.getCountryName() + "</option>";
             }

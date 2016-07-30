@@ -35,7 +35,7 @@ public class AllActiveSchoolListTag extends SimpleTagSupport {
             List<School> schoolList = schoolDao.getAllActiveSchool();
             selectSchoolCtrl = "<select name='" + ctrlName + "' id='" + ctrlName + "'>";
             if (schoolList != null) {
-                selectSchoolCtrl += "<option value='0' disabled>-SELECT SCHOOL-</option>";
+                selectSchoolCtrl += "<option value='0' disabled>Make a selection</option>";
                 for (School school : schoolList) {
                     selectSchoolCtrl += "<option value='" + school.getSchoolId() + "' " + ((String.valueOf(school.getSchoolId()).equals(selectedSchool)) ? "selected='selected'" : "") + ">" + school.getSchoolName() + "</option>";
                 }

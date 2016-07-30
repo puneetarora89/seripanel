@@ -23,6 +23,11 @@ public class RatingServiceImpl implements RatingService{
 		int records = ratingDao.update(id, rate, updatedBy);
 		return records;
 	}
+	@Override
+	public Rating update(Rating rating) {
+		Rating updatedRating = ratingDao.update(rating);
+		return updatedRating;
+	}
 
 	@Override
 	public List<Rating> getRatingForEntity(long id) {

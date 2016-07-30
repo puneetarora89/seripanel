@@ -3,6 +3,7 @@ package com.seri.web.dao;
 import com.seri.web.dto.RatingTask;
 import com.seri.web.model.Syllabus;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public interface SyllabusDao {
 
     public Boolean update(Syllabus syllabus);
 
-    public Syllabus getSyllabusBySyllabusId(int id);
+    public Syllabus getSyllabusBySyllabusId(long id);
 
     public List<Syllabus> getSyllabusBySyllabusSchoolId(int id);
 
@@ -31,5 +32,9 @@ public interface SyllabusDao {
 
     public List<Syllabus> getSyllabusListBySyllabusFilters(Map<String, String> params);
     
-    public List<RatingTask> getWorkFromSyllabus(long standardId, long subjectId);
+    public List<RatingTask> getWorkFromSyllabus(long standardId, long subjectId, Date taskDate);
+    
+    public Syllabus getParentSyllabus(long id);
+    
+    public Map<String, Long> getParentStudentBySyllabus(long syllabusId);
 }

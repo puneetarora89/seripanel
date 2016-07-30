@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.seri.service.rating.RatingService;
+import com.seri.common.CommonTypes;
+import com.seri.service.SyllabusService;
+import com.seri.service.notification.NotificatiobServiceAdaptor;
 import com.seri.web.dao.RatingDao;
 import com.seri.web.dao.daoImpl.RatingDaoImpl;
 import com.seri.web.model.Rating;
+import com.seri.web.model.Syllabus;
 import com.seri.web.utils.CalendarUtil;
 import com.seri.web.utils.LoggedUserUtil;
 
@@ -29,16 +32,36 @@ import com.seri.web.utils.LoggedUserUtil;
 @Controller
 @RequestMapping(value = "rating")
 public class RatingController {
+	
     private RatingDao ratingDao = new RatingDaoImpl();
     
     @Autowired
-    private RatingService ratingService;
+    private SyllabusService syllabusService;
 
-    @RequestMapping(value = "/updateRating/{ratingId}/{rate}", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateRating/{syllabusId}/{rate}", method = RequestMethod.GET)
     @ResponseStatus(value=HttpStatus.OK)
-    public void updateRating(@PathVariable long ratingId, @PathVariable int rate) {
+    public void updateRating(@PathVariable long syllabusId, @PathVariable int rate) {
         try {
-        	ratingService.update(ratingId, rate, LoggedUserUtil.getUserId());
+        	syllabusService.updateSyllabusRating(syllabusId, rate, LoggedUserUtil.getUserId());
+        	Syllabus syllabus = syllabusService.getParentSyllabus(syllabusId);
+        	Map<String, Long> parentStudentIds = syllabusService.getParentStudentBySyllabus(syllabusId);
+        	String  desc  =rate+" rating is given for work given on "+CalendarUtil.getSystemDateFormat().format(syllabus.getCreatedDate());
+        	long studend = parentStudentIds.get("student");
+        	long parent = parentStudentIds.get("parent");
+        	if(studend != 0)
+        		NotificatiobServiceAdaptor.createSingleNotification(CommonTypes.RATING, studend, 2, desc);
+        		
+        	if(parent != 0)
+        		NotificatiobServiceAdaptor.createSingleNotification(CommonTypes.RATING, parent, 2, desc);
+        } catch (Exception e){
+        }
+    }
+    
+    @RequestMapping(value = "/updateRating/{syllabusId}/comment/{comment}", method = RequestMethod.GET)
+    @ResponseStatus(value=HttpStatus.OK)
+    public void updateRating(@PathVariable long syllabusId, @PathVariable String comment) {
+        try {
+        	syllabusService.updateSyllabusRatingComments(syllabusId, comment, LoggedUserUtil.getUserId());
         } catch (Exception e){
         }
     }

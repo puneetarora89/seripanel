@@ -15,7 +15,7 @@
             <th class="head0">Student Name</th>
             <th class="head1">Task Name</th>
             <th class="head0">View Task Details</th>
-            <th  hidden="true">rateID</th>
+            <th  hidden="true">rate id</th>
             <th class="head1">Comment</th>
             <th class="head0">Assign Rating</th>
         </tr>
@@ -26,9 +26,14 @@
 	            <td class="aligncenter"><span class="center"><input type="checkbox" /></span></td>
 	            <td>${ratetask.studentName}</td>
 	            <td>${ratetask.taskType}</td>
+	            <%-- <c:when test="${ratetask.status != 'PENDING'}"> --%>
 	            <td><a class="syllabusContent" data-toggle="modal" data-id="${ratetask.syllabusId}" href="#syllabusContent">View Task Details</a></td>
+	            <%-- </c:when> --%>
+	            <%-- <c:otherwise>
+	            	<td><span class="center">No Work Submitted</span></td>
+	            </c:otherwise> --%>
 	            <td id="rateId" hidden="true">${ratetask.rateId}</td>
-	            <td class="center">${ratetask.comment}</td>
+	            <td class="center" id="comment">${ratetask.comment}</td>
 	            <td class="center"><span class="field" id="rating">
 	            			<c:if test="${ratetask.rate == 0 }">
 		                        <a href="#" class="student-rate-a promptbutton"> <span class="badge badge-important blank-rating">1</span></a>

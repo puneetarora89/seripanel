@@ -103,7 +103,7 @@ public class SubjectController {
         if(ctrlClass==null)
             ctrlClass=ctrlName;
 
-        String retHtml = "<select name='"+ctrlName+"' class='"+ctrlClass+"' id='"+ctrlId+"'><option value='0'>--Select Subject--</option>";
+        String retHtml = "<select name='"+ctrlName+"' class='"+ctrlClass+"' id='"+ctrlId+"'><option value='0'>Make a selection</option>";
 
         try {
             if(request.getParameter("standardId")==null)
@@ -143,7 +143,7 @@ public class SubjectController {
         if(ctrlClass==null)
             ctrlClass=ctrlName;
 
-        String retHtml = "<select name='"+ctrlName+"' class='"+ctrlClass+"' id='"+ctrlId+"'><option value='0'>--Select Module--</option>";
+        String retHtml = "<select name='"+ctrlName+"' class='"+ctrlClass+"' id='"+ctrlId+"'><option value='0'>Make a selection</option>";
 
         try {
             if(request.getParameter("subjectId")==null)

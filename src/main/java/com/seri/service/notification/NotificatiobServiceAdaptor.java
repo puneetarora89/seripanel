@@ -15,29 +15,30 @@ public class NotificatiobServiceAdaptor {
 		notificationService = notificationServiceInstance;
 	}
 
-	public static void createSingleNotification(CommonTypes notificationType, long entityId, Date dueDate) {
-		createSingleNotification(notificationType,entityId,dueDate, 0, null);
+	public static void createSingleNotification(CommonTypes notificationType, long entityId, Date dueDate, String description) {
+		createSingleNotification(notificationType,entityId,dueDate, description, 0, null);
 
 	}
-	public static void createSingleNotification(CommonTypes notificationType, long entityId, int days) {
-		createSingleNotification(notificationType,entityId,days, 0, null); 
+	public static void createSingleNotification(CommonTypes notificationType, long entityId, int days, String description) {
+		createSingleNotification(notificationType,entityId,days, description, 0, null); 
 	}
 
-	public static void createSingleNotification(CommonTypes notificationType, long entityId, Date dueDate, long linkedEntity,
+	public static void createSingleNotification(CommonTypes notificationType, long entityId, Date dueDate, String description, long linkedEntity,
 			RoleType linkedEntityRole) {
 		Notification notification = new Notification();
 		notification.setNotificationType(notificationType);
 		notification.setEntityId(entityId);
 		notification.setDueDate(dueDate);
+		notification.setDescription(description);
 		notification.setLinkedEntity(linkedEntity);
 		notification.setLinkedEntityRole(linkedEntityRole);
 		notification.setCreatedBy(LoggedUserUtil.getUserId());
 		notification.setCreatedDate(CalendarUtil.getDate());
 		createNotification(notification);
 	}
-	public static void createSingleNotification(CommonTypes notificationType, long entityId, int days, long linkedEntity,
+	public static void createSingleNotification(CommonTypes notificationType, long entityId, int days,String description, long linkedEntity,
 			RoleType linkedEntityRole) {
-		createSingleNotification(notificationType,entityId,CalendarUtil.addDays(days), linkedEntity, linkedEntityRole);
+		createSingleNotification(notificationType,entityId,CalendarUtil.addDays(days), description, linkedEntity, linkedEntityRole);
 	}
 
 //	Group Notifications

@@ -185,12 +185,11 @@ public class SyllabusController {
         syllabusForm.setCreatedDate(CalendarUtil.getDate());
         syllabusForm.setLastUpdatedBy(LoggedUserUtil.getUserId());
         syllabusForm.setLastUpdatedDate(CalendarUtil.getDate());
-        syllabusForm.setTaskName("syllabus");
+        syllabusForm.setTaskName(CommonTypes.SYLLABUS);
         globalFunUtils.getNotification(model);
         syllabusDao.create(syllabusForm);
-        CommonTypes taskType = syllabusForm.getTaskName() == "home_work" ? CommonTypes.HOME_WORK : CommonTypes.CLASS_WORK;
-        NotificatiobServiceAdaptor.createGroupNotification(taskType, RoleType.ROLE_STUDENT,2,syllabusForm.getSchoolId(),syllabusForm.getStudentId());
-        NotificatiobServiceAdaptor.createGroupNotification(taskType, RoleType.ROLE_PARENT,2,syllabusForm.getSchoolId(),syllabusForm.getStudentId());
+        NotificatiobServiceAdaptor.createGroupNotification(syllabusForm.getTaskName(), RoleType.ROLE_STUDENT,2,syllabusForm.getSchoolId(),syllabusForm.getStudentId());
+        NotificatiobServiceAdaptor.createGroupNotification(syllabusForm.getTaskName(), RoleType.ROLE_PARENT,2,syllabusForm.getSchoolId(),syllabusForm.getStudentId());
         model.setViewName("redirect:content?token=success&schoolid="+syllabusForm.getSchoolId()+"&standardid="+syllabusForm.getStandardId()+"&subjectid="+syllabusForm.getSubjectId()+"&moduleid="+syllabusForm.getModuleId());
         return model;
     }
@@ -210,7 +209,7 @@ public class SyllabusController {
         syllabusForm.setTaskId(Integer.parseInt(request.getParameter("taskId1")));
         syllabusForm.setLastUpdatedBy(LoggedUserUtil.getUserId());
         syllabusForm.setLastUpdatedDate(CalendarUtil.getDate());
-        syllabusForm.setTaskName("syllabus");
+        syllabusForm.setTaskName(CommonTypes.SYLLABUS);
         syllabusDao.update(syllabusForm);
         model.setViewName("redirect:content?token=success&schoolid="+syllabusForm.getSchoolId()+"&standardid="+syllabusForm.getStandardId()+"&subjectid="+syllabusForm.getSubjectId()+"&moduleid="+syllabusForm.getModuleId());
         return model;
@@ -311,8 +310,8 @@ public class SyllabusController {
         return obj.toJSONString();
     }
     @RequestMapping(value="/getStudentWork", method=RequestMethod.GET)
-    public String getStudentWork(long standardId, long subjectId, Model model){
-    	List<RatingTask> ratingTaskList = syllabusDao.getWorkFromSyllabus(standardId, subjectId);
+    public String getStudentWork(long standardId, long subjectId, Date taskDate, Model model){
+    	List<RatingTask> ratingTaskList = syllabusDao.getWorkFromSyllabus(standardId, subjectId, taskDate);
     	model.addAttribute("ratingTaskList", ratingTaskList);
     	return "studentwork";
     }

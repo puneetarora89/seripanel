@@ -6,6 +6,7 @@ import java.util.Map;
 public interface RatingService {
 	
 	public Rating create(Rating rating);
+	public Rating update(Rating rating);
 	public int update(long id, int rate, long updateBy);
 	public List<Rating> getRatingForEntity(long id);
 	public List<Rating> getRatingWithFilter(Map<String, Object> filter);

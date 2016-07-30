@@ -183,7 +183,7 @@ public class SchoolController {
         List<Department> departmentList = departmentDao.getDepartmentList();
         String ctrl = "";
 
-        ctrl = "<select name='"+ctrlName+"' id='"+ctrlId+"' class='"+ctrlClass+"'><option value='0'>-Select Department-</option>";
+        ctrl = "<select name='"+ctrlName+"' id='"+ctrlId+"' class='"+ctrlClass+"'><option value='0'>Make a selection</option>";
         if(departmentList!=null) {
             for (Department department : departmentList) {
                 ctrl += "<option value=" + department.getDepartmentId() + " " + (((department.getDepartmentId()) == Integer.parseInt(selectedDepartment)) ? "selected='selected'" : "") + ">" + department.getDepartmentName() + "</option>";

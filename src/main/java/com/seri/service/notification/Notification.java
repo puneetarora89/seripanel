@@ -37,6 +37,8 @@ public class Notification extends BaseEntity implements Serializable,Comparable<
 	private RoleType linkedEntityRole;
 	@Column(name="DUE_DATE")
 	private Date dueDate;
+	@Column(name="DESCRIPTION")
+	private String description;
 
 
 	public CommonTypes getNotificationType() {
@@ -104,6 +106,14 @@ public class Notification extends BaseEntity implements Serializable,Comparable<
 		this.schoolId = schoolId;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "Notification [entityId=" + entityId + ", groupType=" + groupType + ", standardId=" + standardId

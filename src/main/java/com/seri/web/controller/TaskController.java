@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.seri.web.utils.GlobalFunUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -20,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seri.common.CommonTypes;
+import com.seri.common.CommonTypesPropertyEditorSupport;
 import com.seri.common.Gender;
 import com.seri.common.GenderPropertyEditorSupport;
 import com.seri.common.MyCustomNumberEditor;
@@ -49,6 +50,7 @@ import com.seri.web.model.Subject;
 import com.seri.web.model.Syllabus;
 import com.seri.web.model.Teacher;
 import com.seri.web.utils.CalendarUtil;
+import com.seri.web.utils.GlobalFunUtils;
 import com.seri.web.utils.LoggedUserUtil;
 
 /**
@@ -81,6 +83,7 @@ public class TaskController {
     	binder.registerCustomEditor(Date.class, new CustomDateEditor(CalendarUtil.getSystemDateFormat(), true));
         binder.registerCustomEditor(RoleType.class, new RoleTypePropertyEditorSupport());
         binder.registerCustomEditor(Gender.class, new GenderPropertyEditorSupport());
+        binder.registerCustomEditor(CommonTypes.class, new CommonTypesPropertyEditorSupport());
         binder.registerCustomEditor(float.class, new MyCustomNumberEditor(Float.class));
         binder.registerCustomEditor(long.class, new MyCustomNumberEditor(Long.class));
         binder.registerCustomEditor(int.class, new MyCustomNumberEditor(Integer.class));

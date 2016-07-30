@@ -34,6 +34,10 @@ rating.studentListing();
                     <standardLibs:subjectListInQuery ids="${tempStandardId}" ctrlName="subjectId" ctrlId="customSubjectId" selectedSubject="${empty selectedSubject ? 0 : selectedSubject}" />
                 </span>
     </p>
+                <p>
+                <label>Task Date</label>
+                <span class="field"><input type="text" name="taskDate" id="taskDate" class="input-large date-field" placeholder="Select Date" /></span>
+            </p>
 </sec:authorize>
 </form>
 

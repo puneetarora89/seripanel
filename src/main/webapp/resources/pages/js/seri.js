@@ -6,7 +6,9 @@
 var $ = jQuery.noConflict();
 
 $(function(){
-	$(".date-field").attr("autocomplete","off").datepicker({dateFormat:"yy-mm-dd"});
+	$(".date-field").attr("autocomplete","off").datepicker({
+		dateFormat:"yy-mm-dd"
+	});
 });
 
 var email = {
@@ -728,9 +730,33 @@ var rating = {
     },
     
     studentListing: function(){
+    	
+    	$(document).on("change", ".date-field", function(){
+    		var standardId = $("#standardId").val();
+            var subjectId = $("#customSubjectId").val();
+            var taskDate = $(this).val();
+            if(standardId !=0 && subjectId != 0 && taskDate != ""){
+            	$.ajax({
+            		url: "/syllabus/getStudentWork/",
+            		method: "GET",
+            		data: {standardId: standardId, subjectId: subjectId, taskDate : taskDate},
+            		async: false,
+            		success: function(result) {
+            			$('#dataTable').html(result);
+            		}
+            	});
+            }
+    	});
+    	
     	$(document).on("change", "#standardId", function(){
-    		$("#dataTable").html("");
     		$("#customSubjectId").val("0");
+    		$("#taskDate").val("");
+    		$("#dataTable").html("");
+    	});
+    	
+    	$(document).on("change", "#customSubjectId", function(){
+    		$("#dataTable").html("");
+    		$("#taskDate").val("");
     	});
     	
     	$(document).on("click", ".syllabusContent", function(e){
@@ -739,54 +765,31 @@ var rating = {
             $("#syllabusContent").find(".modal-body").load("/syllabus/syllabuscontent/"+syllabusId);
         });
     	
-        $(document).on("change", "#customSubjectId", function(){
-            var standardId = $("#standardId").val();
-            var subjectId = $(this).val();
-//            var dataUrl = "/syllabus/getStudentWork/?standardId="+standardId+"&subjectId="+subjectId;
-//            $('#dyntable').dataTable( {
-//            	  "ajaxSource": dataUrl,
-//            	  "columns": [
-//            	    { "data": "studentName" },
-//            	    { "data": "taskType" },
-//            	    { "data": "taskType" },
-//            	    { "data": "rate" },
-//            	    { "data": "outof" }
-//            	  ]
-//            	} );
-            $.ajax({
-                url: "/syllabus/getStudentWork/",
+        $(document).on("click", "a.student-rate-a", function(e){
+            e.preventDefault();
+            console.log("Rating updated select");
+            $(this).nextAll().children("span").addClass("blank-rating");
+    		$(this).children("span").removeClass("blank-rating");
+    		$(this).prevAll().children("span").removeClass("blank-rating");
+    		syllabusId = $(this).parent().parent().siblings().children(".syllabusContent").attr("data-id");
+    		ratingComment = $(this);
+    		var rate = $(this).children("span").html();
+    		console.log("SyllabusId ID - "+syllabusId);
+    		console.log("Rate - "+rate);
+    		$.ajax({
+                url: "/rating/updateRating/"+syllabusId+"/"+rate,
                 method: "GET",
-                data: {standardId: standardId, subjectId: subjectId},
-                async: false,
-                success: function(result) {
-                	$('#dataTable').html(result);
-                }
+                async: true,
             });
-            
-            $(document).on("click", ".promptbutton", function(e){
-                e.preventDefault();
-                console.log("Rating updated select");
-                $(this).nextAll().children("span").addClass("blank-rating");
-        		$(this).children("span").removeClass("blank-rating");
-        		$(this).prevAll().children("span").removeClass("blank-rating");
-        		var rateId = $(this).parent().parent().siblings("#rateId").html();
-        		var rate = $(this).children("span").html();
-        		console.log("Rate ID - "+rateId);
-        		console.log("Rate - "+rate);
-        		$.ajax({
-                    url: "/rating/updateRating/"+rateId+"/"+rate,
-                    method: "GET",
-                    async: true,
-                });
+    		jPrompt('Enter Comments:<input type="hidden" id="hidSyllabusId" value="'+syllabusId+'"/><textarea style="resize: none; padding-right: 0px !important; overflow: hidden" rows="5" id="popup_prompt"></textarea>','', 'Submit Comments', function(r) {
+    			if(r){
+    				var comments = r;
+    				ratingComment.parent().parent().siblings("#comment").html(comments);
+    				$.get("/rating/updateRating/"+syllabusId+"/comment/"+comments);
+    			}
+    			syllabusId = null;
+    			ratingComment = null;
             });
-//            $.getJSON( "/syllabus/getStudentWork/", {standardId: standardId, subjectId: subjectId} )
-//                .done(function( result ) {
-//                	$('#dataTable').html(result);
-//                })
-//                .fail(function( jqxhr, textStatus, error ) {
-//                    var err = textStatus + ", " + error;
-//                    alert( "Request Failed: " + err );
-//                });
         });
     }
     
@@ -885,3 +888,4 @@ function getUrlVars()
 
     return vars;
 }
+

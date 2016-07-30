@@ -65,7 +65,7 @@ public class SchoolStandardSubjectSelectTag extends SimpleTagSupport {
             ctrlId=ctrlClass;
 
         List<Standard> standardList = standardDao.getPrimaryStandard();
-        String selectCtrl = "<select name='"+ctrlName+"' class='"+ctrlClass+"' id='"+ctrlId+"'><option value='0'>-SELECT STANDARD-</option>";
+        String selectCtrl = "<select name='"+ctrlName+"' class='"+ctrlClass+"' id='"+ctrlId+"'><option value='0'>Make a selection</option>";
         List<Subject> subjectList =null;
         if(multi!=null && multi.equals("true"));
             selectCtrl = "<select name='"+ctrlName+"' size='5' id='"+ctrlId+"' class='"+ctrlClass+"' multiple='multiple'>";

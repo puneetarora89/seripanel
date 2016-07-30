@@ -22,8 +22,8 @@ public class TestWorkAndRating {
 	
 	@Test
 	public void getTaskRate(){
-		List<RatingTask> task = dao.getWorkFromSyllabus(1, 1);
-		String r  = new Gson().toJson(task);
+//		List<RatingTask> task = dao.getWorkFromSyllabus(1, 1);
+//		String r  = new Gson().toJson(task);
 		
 	}
 

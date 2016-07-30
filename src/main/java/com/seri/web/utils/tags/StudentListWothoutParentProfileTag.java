@@ -29,7 +29,7 @@ public class StudentListWothoutParentProfileTag extends SimpleTagSupport {
         List<Student> studentList = studentDao.getStudentWithoutParentProfile();
         String selectCtrl = "<select name='"+ctrlName+"' id='"+ctrlName+"' >";
         if(studentList != null) {
-            selectCtrl+= "<option value='0'>-Select Student-</option>";
+            selectCtrl+= "<option value='0'>Make a selection</option>";
             for (Student student : studentList) {
                 selectCtrl += "<option value='" + student.getStudentId() + "'>" + student.getfName() +" "+ student.getlName() + " ("+student.getUserId()+") </option>";
             }

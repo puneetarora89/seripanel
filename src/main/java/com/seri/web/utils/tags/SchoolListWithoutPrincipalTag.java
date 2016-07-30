@@ -23,7 +23,7 @@ public class SchoolListWithoutPrincipalTag extends SimpleTagSupport {
         List<School> schoolList = schoolDao.getSchoolwithoutPrincipal();
         String selectSchoolCtrl = "<select name='schoolId'>";
         if(schoolList != null) {
-            selectSchoolCtrl+= "<option value='0'>-SELECT SCHOOL-</option>";
+            selectSchoolCtrl+= "<option value='0'>Make a selection</option>";
             for (School school : schoolList) {
                 selectSchoolCtrl += "<option value='" + school.getSchoolId() + "'>" + school.getSchoolName() + "</option>";
             }
