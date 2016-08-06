@@ -6,9 +6,9 @@
             <input type="hidden" name="passwordToken" value="${param.token}" />
 
             <div class="par control-group">
-                <label for="login" class="control-label">Email Id</label>
+                <label for="email" class="control-label">Email Id</label>
                 <div class="controls">
-                    <input type="text" class="span4 " id="login" name="login" readonly="readonly" value="${userDetails.login}" placeholder="Enter Email Id">
+                    <input type="text" class="span4 " id="email" name="email" readonly="readonly" value="${userDetails.email}" placeholder="Enter Email Id">
                     <span class="help-inline"></span>
                 </div>
             </div><!--par-->

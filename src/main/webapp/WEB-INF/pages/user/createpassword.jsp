@@ -4,7 +4,7 @@
 <body>
 <design:head />
 <div class="mainwrapper">
-    <design:header />
+    <%--<design:header />--%>
 
     <design:navigation />
 

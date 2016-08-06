@@ -197,11 +197,9 @@ public class UriController {
     @RequestMapping(value = "/addpassword**", method = RequestMethod.POST)
     public ModelAndView addPasswordFirstTimeUser(@ModelAttribute("userForm") User userForm, HttpServletRequest request) {
         ModelAndView model = new ModelAndView();
-        globalFunUtils.getNotification(model);
         userController.createPassword(request);
         model.addObject("userDetails", userForm);
-        model.setViewName("user/createpassword");
-        return model;
+        return new ModelAndView("redirect:login?token=success&");
     }
 
     @RequestMapping(value = "/updateprofile**", method = RequestMethod.GET)

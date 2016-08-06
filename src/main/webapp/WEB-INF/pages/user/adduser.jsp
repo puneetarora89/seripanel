@@ -23,9 +23,6 @@
 
                 <commonLib:addUser />
 
-                <sec:authorize access="hasRole('ROLE_SCHOOL_ADMIN')">
-
-                </sec:authorize>
 
 
 

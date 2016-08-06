@@ -83,15 +83,15 @@ public class GlobalFunUtils {
         return hexString.toString();
     }
 
-    public Boolean sendMail(Map<String, String> map){
+    public static Boolean sendMail(Map<String, String> map){
         // Recipient's email ID needs to be mentioned.
         String to = map.get("to");
 
         // Sender's email ID needs to be mentioned
         String from = map.get("from");
 
-        final String username = "";//change accordingly
-        final String password = "";//change accordingly
+        final String username = "seripanel01@gmail.com";//change accordingly
+        final String password = "Nwac@123";//change accordingly
 
         // Assuming you are sending email through relay.jangosmtp.net
         String host = "smtp.gmail.com";

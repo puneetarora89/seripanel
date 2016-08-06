@@ -48,19 +48,29 @@ public class TestNotification {
 		notificationService.createNotification(notification);
 		
 	}
+
+    @Test
+	public void createStudentEntityNotification(){
+		notificationService.createNotification(sampleNotification());
+		Notification notification = sampleNotification();
+		notification.setSchoolId(7);
+		notification.setStandardId(1);
+		notificationService.createNotification(notification);
+	}
+
 	@Test
-//	@Ignore
+	@Ignore
 	public void testGetUserNotification() {
 		List<Notification> notificatioList = notificationService.getNotificationForUser(asampleUser());
 		assertEquals(4, notificatioList.size());
 	}
-	
-	
+
+
 	@Ignore
 	public Notification sampleNotification(){
 		Notification notification = new Notification();
 		notification.setNotificationType(CommonTypes.HOME_WORK);
-		notification.setGroupType(RoleType.ROLE_TEACHER);
+		notification.setGroupType(RoleType.ROLE_STUDENT);
 		notification.setDueDate(CalendarUtil.addDays(2));
 		notification.setCreatedBy(3);
 		notification.setCreatedDate(CalendarUtil.getDate());

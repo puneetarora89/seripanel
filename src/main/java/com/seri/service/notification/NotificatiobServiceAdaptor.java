@@ -85,7 +85,7 @@ public class NotificatiobServiceAdaptor {
 	}
 	public static void createGroupNotification(CommonTypes notificationType, RoleType groupType, int days, long school, long standard, long linkedEntity,
 			RoleType linkedEntityRole) {
-
+		createGroupNotification(notificationType, groupType, CalendarUtil.addDays(days), school, 0, linkedEntity, linkedEntityRole);
 	}
 
 	public static void createGroupNotification(CommonTypes notificationType, RoleType groupType, Date dueDate, long school, long standard, long linkedEntity,

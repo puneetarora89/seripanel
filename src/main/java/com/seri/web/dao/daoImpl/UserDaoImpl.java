@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> getUnregisterUser() {
         EntityManager em = DbCon.getEntityManager();
-        Query ui =  em.createQuery("select c from User c where c.firstReset=0 and c.status=true");
+        Query ui =  em.createQuery("select c from User c where c.firstReset=0 and c.password=c.passwordToken");
         em.clear();
         if(ui.getResultList().size()>0)
             return ui.getResultList();
